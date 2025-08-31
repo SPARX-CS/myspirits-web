@@ -1,5 +1,7 @@
 FROM nginx:alpine
-EXPOSE 8080
+# Nginx のデフォルトconfを差し替え
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY index.html /usr/share/nginx/html/index.html
-CMD ["nginx","-g","daemon off;"]
+# 公開ファイルを配置（index.htmlや今後のwidget.js等）
+COPY . /usr/share/nginx/html
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]
